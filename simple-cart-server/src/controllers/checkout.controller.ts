@@ -17,7 +17,6 @@ export const checkOut = (req: Request, res: Response): void => {
 
     for (const item of items) {
       const product = products.find((p) => p.id == item.id);
-      console.log(item)
       if (!product) {
         res.status(400).json({
           success: false,
