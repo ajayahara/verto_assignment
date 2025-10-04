@@ -25,7 +25,7 @@ app.get("/", (req: Request, res: Response) => {
     .json({
       success: true,
       timestamp: new Date().toISOString(),
-      message: "Shopping cart API.",
+      message: "Shopping Cart API",
     });
 });
 
