@@ -26,9 +26,9 @@ interface AppContextType {
   cart: ICartItem[];
   products: IProduct[];
   setProducts: (products: IProduct[]) => void;
-  addToCart: (productId: number, product?: IProduct) => void;
-  removeFromCart: (productId: number) => void;
-  updateQuantity: (productId: number, quantity: number) => void;
+  addToCart: (id: number, product?: IProduct) => void;
+  removeFromCart: (id: number) => void;
+  updateQuantity: (id: number, quantity: number) => void;
   clearCart: () => void;
   getProductById: (id: number) => IProduct | undefined;
   getCartTotal: () => number;
@@ -54,35 +54,35 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     saveCartToStorage(cart);
   }, [cart]);
 
-  const addToCart = (productId: number, product?: IProduct) => {
+  const addToCart = (id: number, product?: IProduct) => {
     setCart(prevCart => {
-      const existingItem = prevCart.find(item => item.productId === productId);
+      const existingItem = prevCart.find(item => item.id === id);
       
       if (existingItem) {
         return prevCart.map(item =>
-          item.productId === productId
+          item.id === id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       } else {
-        return [...prevCart, { productId, quantity: 1, product }];
+        return [...prevCart, { id, quantity: 1, product }];
       }
     });
   };
 
-  const removeFromCart = (productId: number) => {
-    setCart(prevCart => prevCart.filter(item => item.productId !== productId));
+  const removeFromCart = (id: number) => {
+    setCart(prevCart => prevCart.filter(item => item.id !== id));
   };
 
-  const updateQuantity = (productId: number, quantity: number) => {
+  const updateQuantity = (id: number, quantity: number) => {
     if (quantity <= 0) {
-      removeFromCart(productId);
+      removeFromCart(id);
       return;
     }
 
     setCart(prevCart =>
       prevCart.map(item =>
-        item.productId === productId
+        item.id === id
           ? { ...item, quantity }
           : item
       )
@@ -100,7 +100,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const getCartTotal = (): number => {
     return cart.reduce((total, item) => {
-      const product = getProductById(item.productId) || item.product;
+      const product = getProductById(item.id) || item.product;
       return total + (product ? product.price * item.quantity : 0);
     }, 0);
   };
@@ -114,7 +114,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     if (products.length > 0 && cart.length > 0) {
       const enhancedCart = cart.map(item => ({
         ...item,
-        product: item.product || getProductById(item.productId),
+        product: item.product || getProductById(item.id),
       }));
       
       // Only update if there are changes to avoid infinite loop

@@ -35,7 +35,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
     setIsCheckingOut(true);
     try {
       const checkoutItems = cart.map(item => ({
-        productId: item.productId,
+        id: item.id,
         quantity: item.quantity,
       }));
 
@@ -73,12 +73,12 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
           ) : (
             <div className="space-y-4">
               {cart.map((item) => {
-                const product = item.product || products.find(p => p.id === item.productId);
+                const product = item.product || products.find(p => p.id === item.id);
                 
                 if (!product) return null;
 
                 return (
-                  <div key={item.productId} className="flex items-center space-x-4 border rounded-lg p-4">
+                  <div key={item.id} className="flex items-center space-x-4 border rounded-lg p-4">
                     <img
                       src={product.image}
                       alt={product.title}
@@ -93,7 +93,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => updateQuantity(item.productId, item.quantity - 1)}
+                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
                           disabled={item.quantity <= 1}
                         >
                           <Minus className="h-3 w-3" />
@@ -102,7 +102,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                         <Input
                           type="number"
                           value={item.quantity}
-                          onChange={(e) => updateQuantity(item.productId, parseInt(e.target.value) || 1)}
+                          onChange={(e) => updateQuantity(item.id, parseInt(e.target.value) || 1)}
                           className="w-16 text-center"
                           min="1"
                         />
@@ -110,7 +110,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => updateQuantity(item.productId, item.quantity + 1)}
+                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
                         >
                           <Plus className="h-3 w-3" />
                         </Button>
@@ -118,7 +118,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                         <Button
                           variant="ghost"
                           size="sm"
-                          onClick={() => removeFromCart(item.productId)}
+                          onClick={() => removeFromCart(item.id)}
                           className="text-red-600 hover:text-red-700"
                         >
                           <Trash2 className="h-4 w-4" />

@@ -14,7 +14,7 @@ function App() {
             <Route path="/products" element={<Products />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-          <Toaster position="top-right" />
+          <Toaster position="bottom-right" />
         </div>
       </Router>
     </AppProvider>
