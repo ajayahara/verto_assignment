@@ -53,8 +53,8 @@ A minimal e-commerce site that allows users to:
 
 ## 🌐 Live Demo
 
-- **Frontend**: [Coming Soon](#)
-- **Backend API**: [Coming Soon](#)
+- **Frontend(Vercel)**: [https://verto-assignment-client.vercel.app/](#https://verto-assignment-client.vercel.app/)
+- **Backend API(Render)**: [https://verto-assignment-server.onrender.com/](#https://verto-assignment-server.onrender.com/)
 
 ## 🚀 Quick Start
 
@@ -313,14 +313,13 @@ frontend/
 ```env
 PORT=5000
 NODE_ENV=development
-<!-- FRONTEND_URL=http://localhost:3000 -->
 ```
-<!-- 
+
 ### Frontend (.env)
 
 ```env
 VITE_API_URL=http://localhost:5000/api
-``` -->
+```
 
 ## 🚀 Deployment
 
