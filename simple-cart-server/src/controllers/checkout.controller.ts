@@ -4,7 +4,7 @@ import { products } from "../utils/products";
 export const checkOut = (req: Request, res: Response): void => {
   try {
     const { items } = req.body;
-    if (!items || !Array.isArray(items)) {
+    if (!items || !Array.isArray(items) || !items.length) {
       res.status(400).json({
         success: false,
         message: "Items array is required",
@@ -18,7 +18,7 @@ export const checkOut = (req: Request, res: Response): void => {
     for (const item of items) {
       const product = products.find((p) => p.id == item.id);
       if (!product) {
-        res.status(400).json({
+        res.status(404).json({
           success: false,
           message: `Product with ID ${item.id} not found`,
         });
@@ -28,7 +28,7 @@ export const checkOut = (req: Request, res: Response): void => {
       if (!item.quantity || item.quantity <= 0) {
         res.status(400).json({
           success: false,
-          message: `Invalid quantity product ID ${product.id}`,
+          message: `Invalid quantity. Product ID ${product.id}`,
         });
         return;
       }
