@@ -53,8 +53,8 @@ A minimal e-commerce site that allows users to:
 
 ## 🌐 Live Demo
 
-- **Frontend(Vercel)**: [https://verto-assignment-client.vercel.app/](#https://verto-assignment-client.vercel.app/)
-- **Backend API(Render)**: [https://verto-assignment-server.onrender.com/](#https://verto-assignment-server.onrender.com/)
+- **Frontend(Vercel)**: [https://verto-assignment-client.vercel.app/](https://verto-assignment-client.vercel.app/)
+- **Backend API(Render)**: [https://verto-assignment-server.onrender.com/](https://verto-assignment-server.onrender.com/)
 
 ## 🚀 Quick Start
 
